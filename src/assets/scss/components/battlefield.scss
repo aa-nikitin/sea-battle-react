@@ -4,6 +4,7 @@
   width: 250px;
   position: relative;
   border: solid 2px rgb(35, 32, 194);
+  position: relative;
   &__item {
     width: 24px;
     height: 24px;
@@ -12,6 +13,13 @@
     justify-content: center;
     border-top: solid 1px #ccc;
     border-left: solid 1px #ccc;
+  }
+  &__ships {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
   }
   &--is-clickable {
     cursor: pointer;

@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 import produce from 'immer';
+import { createSelector } from 'reselect';
 import _ from 'lodash';
 
 import { setStartParams, setPlayerShoot } from '../actions';
@@ -23,6 +24,7 @@ const shoots = handleActions(
     [setPlayerShoot]: (state, { payload }) => {
       const { x, y, fieldComputer, shipsComputer } = payload;
       const cellShoot = fieldComputer[y][x];
+      // отметка выстрела (-2 - промох, 1 - попадание)
       const nextState = produce(state, (draft) => {
         draft[y][x] = cellShoot > 0 ? 1 : -2;
       });
@@ -34,6 +36,8 @@ const shoots = handleActions(
           ? shipsComputer[insdexShip]['wounds'] + 1
           : 1;
         const shipDecks = shipsComputer[insdexShip]['decks'];
+
+        // если корабль уничтожен, находим и устанавливаем зону вокруг него
         if (shipWounds === shipDecks) {
           const { point, direction, decks } = shipsComputer[insdexShip];
           // console.log(point, direction, decks);
@@ -88,5 +92,38 @@ const shoots = handleActions(
 );
 
 export const getPlayer = ({ player }) => player;
+
+export const getPlayerShips = createSelector(
+  (state) => state.player.ships,
+  (ships) => {
+    // console.log(ships);
+    const sizeCell = 25;
+    return ships.map((item) => {
+      const {
+        point: [pointX, pointY],
+        direction,
+        decks,
+        idShip
+      } = item;
+
+      if (direction)
+        return {
+          top: pointY * sizeCell,
+          left: pointX * sizeCell,
+          width: decks * sizeCell,
+          height: sizeCell,
+          idShip
+        };
+      else
+        return {
+          top: pointY * sizeCell,
+          left: pointX * sizeCell,
+          width: sizeCell,
+          height: decks * sizeCell,
+          idShip
+        };
+    });
+  }
+);
 
 export default combineReducers({ field, ships, shoots });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getComputer } from '../redux/reducers';
+import { getComputer, getPlayerShips } from '../redux/reducers';
 
 import FieldCell from './FieldCell';
 import { setPlayerShoot } from '../redux/actions';
@@ -8,6 +8,8 @@ import { setPlayerShoot } from '../redux/actions';
 const Battlefield = ({ field, typeField }) => {
   const dispatch = useDispatch();
   const { field: fieldComputer, ships: shipsComputer } = useSelector((state) => getComputer(state));
+  const playerShips = useSelector((state) => getPlayerShips(state));
+  //   console.log(aaa);
 
   const handleClickCell = (params) => {
     const { x, y, value } = params;
@@ -37,6 +39,18 @@ const Battlefield = ({ field, typeField }) => {
             handleClickCell={handleClickCell}
           />
         ))
+      )}
+      {typeField === 'ships' && (
+        <div className="battlefield__ships player-ships">
+          {playerShips.map(({ top, left, width, height, idShip }) => {
+            return (
+              <div
+                key={idShip}
+                className="player-ships__item"
+                style={{ top, left, width, height }}></div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

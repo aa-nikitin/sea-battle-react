@@ -37,7 +37,10 @@ const ships = handleActions(
 );
 const shoots = handleActions(
   {
-    [setStartParams]: (_state, { payload }) => payload.shootsComputer
+    [setStartParams]: (_state, { payload }) => {
+      console.log(payload);
+      return payload.shootsComputer;
+    }
   },
   []
 );

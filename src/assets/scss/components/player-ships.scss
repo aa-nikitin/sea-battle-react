@@ -1,0 +1,17 @@
+.player-ships {
+  &__item {
+    position: absolute;
+    // background-color: #ccc;
+    &:before {
+      content: '';
+      position: absolute;
+      border: solid 2px rgb(35, 32, 194);
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+    }
+    // border-left: solid 1px #000;
+    // border-bottom: solid 1px #000;
+  }
+}

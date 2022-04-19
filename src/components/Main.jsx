@@ -2,7 +2,7 @@ import React from 'react';
 import { setStartParams } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getPlayer } from '../redux/reducers';
+import { getPlayer, getComputer } from '../redux/reducers';
 
 import { useRandomField, useCreateField } from '../hooks';
 
@@ -15,9 +15,8 @@ const Main = () => {
     heightField: 10
   };
   const dispatch = useDispatch();
-  const { field: fieldPlayer, shoots: shootsPlayer /*, ships: shipsPlayer*/ } = useSelector(
-    (state) => getPlayer(state)
-  );
+  const { field: fieldPlayer, shoots: shootsPlayer } = useSelector((state) => getPlayer(state));
+  const { shoots: shootsComputer } = useSelector((state) => getComputer(state));
 
   const [newFieldPlayer, newShipsPlayer, isNewErrorPlayer] = useRandomField(paramsBuildField);
   const [newFieldComputer, newShipsComputer, isNewErrorComputer] = useRandomField(paramsBuildField);
@@ -30,7 +29,7 @@ const Main = () => {
 
   const handleClick = () => {
     console.log(isNewErrorPlayer);
-    if (!isNewErrorPlayer)
+    if (!isNewErrorPlayer && !isNewErrorComputer)
       dispatch(
         setStartParams({
           fieldPlayer: newFieldPlayer,
@@ -38,14 +37,14 @@ const Main = () => {
           shootsPlayer: fieldShoots,
           fieldComputer: newFieldComputer,
           shipsComputer: newShipsComputer,
-          shootsComputer: isNewErrorComputer
+          shootsComputer: fieldShoots
         })
       );
   };
   return (
     <>
+      <Battlefield field={shootsComputer} typeField="ships" />
       <Battlefield field={shootsPlayer} typeField="shoots" />
-      <Battlefield field={fieldPlayer} typeField="ships" />
       <div onClick={handleClick}>Начать</div>
     </>
   );
