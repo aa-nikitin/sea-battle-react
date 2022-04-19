@@ -6,6 +6,8 @@ import { getPlayer } from '../redux/reducers';
 
 import { useRandomField, useCreateField } from '../hooks';
 
+import Battlefield from '../components/Battlefield';
+
 const Main = () => {
   const paramsBuildField = {
     ships: [1, 1, 1, 1, 2, 2, 2, 3, 3, 4],
@@ -13,7 +15,9 @@ const Main = () => {
     heightField: 10
   };
   const dispatch = useDispatch();
-  const { field: fieldPlayer /*, ships: shipsPlayer*/ } = useSelector((state) => getPlayer(state));
+  const { field: fieldPlayer, shoots: shootsPlayer /*, ships: shipsPlayer*/ } = useSelector(
+    (state) => getPlayer(state)
+  );
 
   const [newFieldPlayer, newShipsPlayer, isNewErrorPlayer] = useRandomField(paramsBuildField);
   const [newFieldComputer, newShipsComputer, isNewErrorComputer] = useRandomField(paramsBuildField);
@@ -40,19 +44,8 @@ const Main = () => {
   };
   return (
     <>
-      <div className="battlefield">
-        {fieldPlayer.map((horizontLine, keyY) =>
-          horizontLine.map((item, keyX) => (
-            <div
-              className={`battlefield__item ${keyY === 0 ? 'battlefield--hide-top-border' : ''} ${
-                keyX === 0 ? 'battlefield--hide-left-border' : ''
-              }`}
-              key={`${keyY}${keyX}${item}`}>
-              {item > 0 ? item : ''}
-            </div>
-          ))
-        )}
-      </div>
+      <Battlefield field={shootsPlayer} typeField="shoots" />
+      <Battlefield field={fieldPlayer} typeField="ships" />
       <div onClick={handleClick}>Начать</div>
     </>
   );

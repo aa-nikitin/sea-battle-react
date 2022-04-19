@@ -12,9 +12,11 @@
     justify-content: center;
     border-top: solid 1px #ccc;
     border-left: solid 1px #ccc;
+  }
+  &--is-clickable {
+    cursor: pointer;
     transition-property: all;
     transition-duration: 0.5s;
-    cursor: pointer;
     &:hover {
       background-color: rgb(222, 225, 241);
     }
