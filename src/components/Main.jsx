@@ -26,7 +26,7 @@ const Main = () => {
   // console.log(testParam);
   // const aaa = useRandomField([4, 3, 3, 2, 2, 2, 1, 1, 1, 1]);
 
-  console.log(fieldShoots);
+  // console.log(fieldShoots);
 
   const handleClick = () => {
     console.log(isNewErrorPlayer);

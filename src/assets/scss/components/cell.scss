@@ -1,0 +1,17 @@
+.cell {
+  &--hit {
+    &:after {
+      content: 'X';
+    }
+  }
+  &--empty {
+    &:after {
+      content: 'L';
+    }
+  }
+  &--miss {
+    &:after {
+      content: 'O';
+    }
+  }
+}

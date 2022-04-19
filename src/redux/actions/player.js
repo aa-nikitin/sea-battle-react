@@ -1,15 +1,7 @@
 import { createActions } from 'redux-actions';
 
-const {
-  field: { set: setPlayerField },
-  ships: { set: setPlayerShips }
-} = createActions({
-  FIELD: {
-    set: null
-  },
-  SHIPS: {
-    set: null
-  }
+const { shoot: setPlayerShoot } = createActions({
+  SHOOT: null
 });
 
-export { setPlayerField, setPlayerShips };
+export { setPlayerShoot };
