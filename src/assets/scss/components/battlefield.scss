@@ -1,0 +1,22 @@
+.battlefield {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+  position: relative;
+  border: solid 2px rgb(35, 32, 194);
+  &__item {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+  }
+  &--hide-top-border {
+    border-top: none;
+  }
+  &--hide-left-border {
+    border-left: none;
+  }
+}
