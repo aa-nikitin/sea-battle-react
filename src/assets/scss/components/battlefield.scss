@@ -12,6 +12,12 @@
     justify-content: center;
     border-top: solid 1px #ccc;
     border-left: solid 1px #ccc;
+    transition-property: all;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(222, 225, 241);
+    }
   }
   &--hide-top-border {
     border-top: none;

@@ -1,1 +1,2 @@
-export * from './test';
+export * from './start';
+export * from './player';

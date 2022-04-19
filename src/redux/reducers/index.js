@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import test from './test';
+import player from './player';
+import computer from './computer';
 
-export * from './test';
+export * from './player';
+export * from './computer';
 
-export default combineReducers({ test });
+export default combineReducers({ player, computer });

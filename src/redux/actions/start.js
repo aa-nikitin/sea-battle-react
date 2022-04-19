@@ -1,11 +1,11 @@
 import { createActions } from 'redux-actions';
 
 const {
-  params: { set: setTestParam }
+  start: { set: setStartParams }
 } = createActions({
-  PARAMS: {
+  START: {
     set: null
   }
 });
 
-export { setTestParam };
+export { setStartParams };

@@ -1,3 +1,5 @@
+import { useCreateField } from './';
+
 function compareNumeric(a, b) {
   if (a < b) return 1;
   if (a === b) return 0;
@@ -5,16 +7,11 @@ function compareNumeric(a, b) {
 }
 
 const useRandomField = ({ ships, widthField, heightField }) => {
-  let fieldArr = new Array(heightField); // двумерный массив игрового поля
+  let fieldArr = useCreateField({ widthField, heightField }); // двумерный массив игрового поля
   let allShips = []; // корабли
   let isError = false; // true если не получилось расставить все корабли
 
   ships.sort(compareNumeric);
-
-  // формируем массив игрового поля
-  for (let i = 0; i < fieldArr.length; i++) {
-    fieldArr[i] = new Array(widthField).fill(0);
-  }
 
   const availableY = new Array(heightField).fill().map((_, i) => i); // массив доступных точек Y
 
@@ -155,7 +152,7 @@ const useRandomField = ({ ships, widthField, heightField }) => {
     }
   });
 
-  return { fieldArr, allShips, isError };
+  return [fieldArr, allShips, isError];
 };
 
 export { useRandomField };

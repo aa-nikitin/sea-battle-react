@@ -1,9 +1,9 @@
-import Test from './components/Test';
+import Main from './components/Main';
 
 function App() {
   return (
     <div>
-      <Test />
+      <Main />
     </div>
   );
 }
