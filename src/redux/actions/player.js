@@ -1,7 +1,9 @@
 import { createActions } from 'redux-actions';
 
-const { shoot: setPlayerShoot } = createActions({
-  SHOOT: null
+const {
+  player: { shoot: setPlayerShoot }
+} = createActions({
+  PLAYER: { SHOOT: null }
 });
 
 export { setPlayerShoot };

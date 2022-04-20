@@ -1,26 +1,29 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getComputer, getPlayerShips } from '../redux/reducers';
+import { getCommon, getComputer, getPlayer, getPlayerShips } from '../redux/reducers';
 
 import FieldCell from './FieldCell';
 import { setPlayerShoot } from '../redux/actions';
 
 const Battlefield = ({ field, typeField }) => {
   const dispatch = useDispatch();
+  const { field: fieldPlayer, ships: shipsPlayer } = useSelector((state) => getPlayer(state));
   const { field: fieldComputer, ships: shipsComputer } = useSelector((state) => getComputer(state));
+  const { move } = useSelector((state) => getCommon(state));
   const playerShips = useSelector((state) => getPlayerShips(state));
-  //   console.log(aaa);
 
   const handleClickCell = (params) => {
     const { x, y, value } = params;
 
-    if (typeField === 'shoots' && value === 0) {
+    if (typeField === 'shoots' && value === 0 && move === 'player') {
       dispatch(
         setPlayerShoot({
           x,
           y,
           fieldComputer,
-          shipsComputer
+          shipsComputer,
+          fieldPlayer,
+          shipsPlayer
         })
       );
     }

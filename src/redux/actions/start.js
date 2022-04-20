@@ -4,7 +4,7 @@ const {
   start: { set: setStartParams }
 } = createActions({
   START: {
-    set: null
+    SET: null
   }
 });
 

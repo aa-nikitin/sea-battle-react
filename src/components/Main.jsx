@@ -15,7 +15,7 @@ const Main = () => {
     heightField: 10
   };
   const dispatch = useDispatch();
-  const { field: fieldPlayer, shoots: shootsPlayer } = useSelector((state) => getPlayer(state));
+  const { shoots: shootsPlayer } = useSelector((state) => getPlayer(state));
   const { shoots: shootsComputer } = useSelector((state) => getComputer(state));
 
   const [newFieldPlayer, newShipsPlayer, isNewErrorPlayer] = useRandomField(paramsBuildField);
@@ -28,7 +28,6 @@ const Main = () => {
   // console.log(fieldShoots);
 
   const handleClick = () => {
-    console.log(isNewErrorPlayer);
     if (!isNewErrorPlayer && !isNewErrorComputer)
       dispatch(
         setStartParams({
