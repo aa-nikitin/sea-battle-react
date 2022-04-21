@@ -2,4 +2,16 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: rgba($color: $white, $alpha: 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px $gray;
+  &__item {
+    margin: 10px;
+  }
+  &__name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
 }

@@ -3,19 +3,17 @@
   flex-wrap: wrap;
   width: 250px;
   position: relative;
-  border: solid 2px rgb(35, 32, 194);
-  background-color: #fff;
+  border: solid 2px $blue;
+  background-color: $white;
   position: relative;
-  margin-left: 10px;
-  margin-right: 10px;
   &__item {
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: solid 1px #ccc;
-    border-left: solid 1px #ccc;
+    border-top: solid 1px $gray;
+    border-left: solid 1px $gray;
   }
   &__ships {
     position: absolute;
@@ -29,7 +27,7 @@
     transition-property: all;
     transition-duration: 0.5s;
     &:hover {
-      background-color: rgb(222, 225, 241);
+      background-color: $gray;
     }
   }
   &--hide-top-border {

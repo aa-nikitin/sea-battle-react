@@ -1,17 +1,38 @@
 .cell {
+  position: relative;
+  &:after {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   &--hit {
     &:after {
-      content: 'X';
+      content: '\2718';
+      color: $red;
     }
   }
   &--empty {
     &:after {
-      content: 'L';
+      content: '';
+      background: url('../../img/streak.jpg');
+      background-size: cover;
     }
   }
   &--miss {
     &:after {
-      content: 'O';
+      content: '';
+      width: 7px;
+      height: 7px;
+      background-color: $blue;
+      border-radius: 100%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

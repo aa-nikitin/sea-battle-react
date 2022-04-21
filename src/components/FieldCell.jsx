@@ -19,9 +19,7 @@ const FieldCell = ({ value, typeField, x, y, handleClickCell }) => {
   return (
     <div
       className={`battlefield__item cell ${borderClass}${clickableClass}${cellClass}`}
-      onClick={handleClick}>
-      {/* {value !== 0 ? value : ''} */}
-    </div>
+      onClick={handleClick}></div>
   );
 };
 

@@ -1,0 +1,44 @@
+.start-panel {
+  width: 250px;
+  background-color: rgba($color: $white, $alpha: 0.7);
+  padding: 20px;
+  &__box {
+    margin-bottom: 10px;
+  }
+  &__name {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 1px $gray;
+    outline: none;
+    transition-property: all;
+    transition-duration: 0.5s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    &:focus {
+      border: solid 1px $blue;
+    }
+  }
+  &__button {
+    width: 100%;
+    background-color: $red;
+    color: $white;
+    padding: 10px;
+    border: solid 1px $white;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+    &:hover {
+      background-color: $dark-red;
+    }
+  }
+  &__message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
