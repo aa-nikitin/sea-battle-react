@@ -1,9 +1,9 @@
 import { createActions } from 'redux-actions';
 
 const {
-  computer: { shoot: setComputerShoot }
+  computer: { shoot: setComputerShoot, woundShip: setComputerWoundShip }
 } = createActions({
-  COMPUTER: { SHOOT: null }
+  COMPUTER: { SHOOT: null, WOUND_SHIP: null }
 });
 
-export { setComputerShoot };
+export { setComputerShoot, setComputerWoundShip };

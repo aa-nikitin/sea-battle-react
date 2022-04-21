@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
 
-import { computerWatch } from './computer';
+import { shootsWatch } from './shoots';
 
 export function* sagas() {
-  yield fork(computerWatch);
+  yield fork(shootsWatch);
 }

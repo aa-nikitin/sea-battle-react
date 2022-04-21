@@ -3,7 +3,12 @@ import { combineReducers } from 'redux';
 import produce from 'immer';
 import _ from 'lodash';
 
-import { setStartParams, setPlayerShoot, setComputerShoot } from '../actions';
+import {
+  setStartParams,
+  setComputerWoundShip,
+  setComputerShoot,
+  setPlayerWoundShip
+} from '../actions';
 
 const field = handleActions(
   {
@@ -11,27 +16,22 @@ const field = handleActions(
   },
   []
 );
+const lastShoot = handleActions(
+  {
+    [setComputerShoot]: (_state, { payload: { pointX, pointY } }) => [pointX, pointY]
+  },
+  []
+);
 const ships = handleActions(
   {
     [setStartParams]: (_state, { payload }) => payload.shipsComputer,
-    [setPlayerShoot]: (state, { payload }) => {
-      const { x, y, fieldComputer, shipsComputer } = payload;
-      const cellShoot = fieldComputer[y][x];
+    [setPlayerWoundShip]: (state, { payload }) => {
+      const { insdexShip, shipWounds, shipDecks } = payload;
+      const nextState = produce(state, (draft) => {
+        if (shipDecks > shipWounds) draft[insdexShip]['wounds'] = shipWounds;
+      });
 
-      if (cellShoot > 0) {
-        const insdexShip = _.findIndex(shipsComputer, (elem) => elem.idShip === cellShoot);
-        const shipWounds = shipsComputer[insdexShip]['wounds']
-          ? shipsComputer[insdexShip]['wounds'] + 1
-          : 1;
-        const shipDecks = shipsComputer[insdexShip]['decks'];
-        const nextState = produce(state, (draft) => {
-          if (shipDecks === shipWounds) draft.splice(insdexShip, 1);
-          else draft[insdexShip]['wounds'] = shipWounds;
-        });
-
-        return nextState;
-      }
-      return state;
+      return nextState;
     }
   },
   []
@@ -48,6 +48,13 @@ const shoots = handleActions(
       });
 
       return nextState;
+    },
+    [setComputerWoundShip]: (state, { payload }) => {
+      const { shipDecks, shipWounds, shootAround } = payload;
+
+      if (shipDecks === shipWounds) return shootAround;
+
+      return state;
     }
   },
   []
@@ -142,4 +149,4 @@ const findShip = handleActions(
 
 export const getComputer = ({ computer }) => computer;
 
-export default combineReducers({ field, ships, shoots, findShip });
+export default combineReducers({ field, ships, shoots, findShip, lastShoot });

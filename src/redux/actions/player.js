@@ -1,9 +1,9 @@
 import { createActions } from 'redux-actions';
 
 const {
-  player: { shoot: setPlayerShoot }
+  player: { shoot: setPlayerShoot, woundShip: setPlayerWoundShip }
 } = createActions({
-  PLAYER: { SHOOT: null }
+  PLAYER: { SHOOT: null, WOUND_SHIP: null }
 });
 
-export { setPlayerShoot };
+export { setPlayerShoot, setPlayerWoundShip };
