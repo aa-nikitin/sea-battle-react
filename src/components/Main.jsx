@@ -18,6 +18,8 @@ const Main = () => {
   const { shoots: shootsPlayer } = useSelector((state) => getPlayer(state));
   const { shoots: shootsComputer } = useSelector((state) => getComputer(state));
 
+  // console.log(findShip);
+
   const [newFieldPlayer, newShipsPlayer, isNewErrorPlayer] = useRandomField(paramsBuildField);
   const [newFieldComputer, newShipsComputer, isNewErrorComputer] = useRandomField(paramsBuildField);
   const fieldShoots = useCreateField(paramsBuildField);
@@ -42,8 +44,14 @@ const Main = () => {
   };
   return (
     <>
-      <Battlefield field={shootsComputer} typeField="ships" />
-      <Battlefield field={shootsPlayer} typeField="shoots" />
+      <div className="main">
+        <div>
+          <Battlefield field={shootsComputer} typeField="ships" />
+        </div>
+        <div>
+          <Battlefield field={shootsPlayer} typeField="shoots" />
+        </div>
+      </div>
       <div onClick={handleClick}>Начать</div>
     </>
   );

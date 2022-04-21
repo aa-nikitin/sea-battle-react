@@ -40,7 +40,6 @@ const shoots = handleActions(
         // если корабль уничтожен, находим и устанавливаем зону вокруг него
         if (shipWounds === shipDecks) {
           const { point, direction, decks } = shipsComputer[insdexShip];
-          // console.log(point, direction, decks);
           const nextState2 = produce(nextState, (draft) => {
             for (let i = 0; i < decks; i++) {
               const [pointX, pointY] = direction
@@ -84,7 +83,7 @@ const shoots = handleActions(
           return nextState2;
         }
       }
-      // console.log(state, payload);
+
       return nextState;
     }
   },
@@ -93,10 +92,10 @@ const shoots = handleActions(
 
 export const getPlayer = ({ player }) => player;
 
+// формируем массив для отрисовки на поле кораблей пользователя
 export const getPlayerShips = createSelector(
   (state) => state.player.ships,
   (ships) => {
-    // console.log(ships);
     const sizeCell = 25;
     return ships.map((item) => {
       const {

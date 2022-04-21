@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import produce from 'immer';
-import _ from 'lodash';
+// import produce from 'immer';
+// import _ from 'lodash';
 
 import { setStartParams, setPlayerShoot, setComputerShoot } from '../actions';
 
